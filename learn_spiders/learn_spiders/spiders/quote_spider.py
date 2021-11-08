@@ -1,7 +1,7 @@
 import scrapy
 from scrapy.loader import ItemLoader
 from learn_spiders.items import QuoteItem  # importing the class object from items.py
-
+# importing the class object from items.py
 class QuoteSpider(scrapy.Spider):
     name = "quotes"  # name of the spider for calling purposes
     allowed_domains = ["toscrape.com"]

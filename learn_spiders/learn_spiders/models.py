@@ -1,9 +1,8 @@
-from decimal import Clamped
+# from decimal import Clamped
 from sqlalchemy import create_engine, Column, Table, ForeignKey, MetaData
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import (
-    Integer, String, Date, DateTime, Float, Boolean, Text)
+from sqlalchemy import Integer, String, Date, DateTime, Float, Boolean, Text
 from scrapy.utils.project import get_project_settings
 
 Base = declarative_base()
@@ -27,10 +26,13 @@ quote_tag = Table('quote_tag', Base.metadata,
     Column('tag_id', Integer, ForeignKey('tag.id'))
 )
 
+# Creating Many-to-Many relationship between Quote and Tag (one quote can one or more tags and tag can associate with one or more quotes)
+# Creating One-to-Many relationship between Author and Quote (one author can have one or more quotes but one quote belongs to only one author)
 class Quote(Base):
     """
-
+    Creating an empty table for data from the Quote field 
     """
+    
     __tablename__ = "quote"
 
     id = Column(Integer, primary_key=True)
@@ -41,7 +43,7 @@ class Quote(Base):
 
 class Author(Base):
     """
-
+    Creating an empty table for data from the Author field
     """
 
     __tablename__ = "author"
@@ -56,10 +58,10 @@ class Author(Base):
 
 class Tag(Base):
     """
-
+    Creating an empty table for data from the Tag field
     """
 
-    ___tablename__ = "tag"
+    __tablename__ = "tag"
 
     id = Column(Integer, primary_key=True)
     name = Column('name', String(30), unique=True)

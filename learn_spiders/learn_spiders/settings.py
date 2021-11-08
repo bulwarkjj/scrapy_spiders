@@ -84,6 +84,7 @@ ITEM_PIPELINES = {
 300 - Int that determines the execution order of the pipelines (lower valued pipeline runs first), normally ranging from 0 - 1000
 Pipelines moves extracted data into a database suing ORM(SQLAlchemy) to save and handles the duplicate data issue
 Item pipelines are defined as classes in pipelines.py
+
 """
 
 # Enable and configure the AutoThrottle extension (disabled by default)
