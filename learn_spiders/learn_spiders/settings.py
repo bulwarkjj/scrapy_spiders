@@ -79,6 +79,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'learn_spiders.pipelines.LearnSpidersPipeline': 300,
+    'learn_spiders.pipelines.DuplicatesPipeline': 300,
+    'learn_spiders.pipelines.SaveQuotesPipeline': 300,
 } 
 """
 300 - Int that determines the execution order of the pipelines (lower valued pipeline runs first), normally ranging from 0 - 1000

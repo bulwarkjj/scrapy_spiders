@@ -73,3 +73,25 @@ class SaveQuotesPipeline():
             session.close()
 
         return item
+
+class DuplicatesPipeline(object):
+
+    def __init__(self):
+        """
+        Initializes database connection and sessionmaker.
+        Creates tables.
+        Checks for duplicated tables and drops the duplicate from the pipeline
+        """
+        engine = db_connect()
+        create_table(engine)
+        self.Session = sessionmaker(bind=engine)
+        logging.info("****DuplicatesPipeline: database connected****")
+
+    def process_item(self, item, spider):
+        session = self.Session()
+        exist_quote = session.query(Quote).filter_by(quote_content = item["quote_content"]).first()
+        session.close()
+        if exist_quote is not None:  # the current quote exists
+            raise DropItem("Duplicate item found: %s" % item["quote_content"])
+        else:
+            return item
